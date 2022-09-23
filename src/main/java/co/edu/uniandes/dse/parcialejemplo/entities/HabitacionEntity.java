@@ -9,7 +9,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Getter
 @Setter
 @Entity
-public class HabitacionEntity {
+public class HabitacionEntity extends BaseEntity {
     private int identificacion;
     private int personas;
     private int num_camas;
