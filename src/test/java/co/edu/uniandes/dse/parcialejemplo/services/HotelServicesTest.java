@@ -40,7 +40,7 @@ public class HotelServicesTest {
     }
     private void clearData()
     {
-        entityManager.getEntityManager().createQuery("Delete from HabitacionEntity").executeUpdate();
+        entityManager.getEntityManager().createQuery("Delete from HotelEntity").executeUpdate();
        
     }
 
@@ -57,7 +57,7 @@ public class HotelServicesTest {
     @Test
     void testCreateHotel()throws IllegalOperationException  {
         HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
-        HotelEntity result = hotelService.crearHotel(newEntity);
+        HotelEntity result = hotelService.createHotel(newEntity);
         assertNotNull(result);
         HotelEntity entity = entityManager.find(HotelEntity.class, result.getId());
 

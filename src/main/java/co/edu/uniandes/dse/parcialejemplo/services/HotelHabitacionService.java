@@ -43,7 +43,7 @@ public class HotelHabitacionService {
 
         habitacionEntity.get().setHotel(hotelEntity.get());
         hotelEntity.get().getHabitaciones().add(habitacionEntity.get());
-        log.info("Termina el proceso de asociarle a una marca a la ciudad de id = {0}", HotelId);
+        log.info("Termina el proceso de asociarle a una habitacion a un hotel de id = {0}", HotelId);
         return habitacionEntity.get();
     }
 }

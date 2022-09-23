@@ -47,8 +47,8 @@ public class HotelHabitacionServiceTest {
 
     private void clearData()
     {
-        entityManager.getEntityManager().createQuery("Delete from CiudadEntity").executeUpdate();
-        entityManager.getEntityManager().createQuery("Delete from MarcaEntity").executeUpdate();
+        entityManager.getEntityManager().createQuery("Delete from HabitacionEntity").executeUpdate();
+        entityManager.getEntityManager().createQuery("Delete from HotelEntity").executeUpdate();
     }
 
     private void insertData()

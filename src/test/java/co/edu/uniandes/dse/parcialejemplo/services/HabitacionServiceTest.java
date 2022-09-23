@@ -42,7 +42,7 @@ public class HabitacionServiceTest {
     }
     private void clearData()
     {
-        entityManager.getEntityManager().createQuery("Delete from HotelEntity").executeUpdate();
+        entityManager.getEntityManager().createQuery("Delete from HabitacionEntity").executeUpdate();
        
     }
 
@@ -61,7 +61,7 @@ public class HabitacionServiceTest {
         HabitacionEntity newEntity = factory.manufacturePojo(HabitacionEntity.class);
         HabitacionEntity result = habitacionService.createHabitacion(newEntity);
         assertNotNull(result);
-        HabitacionEntity entity = entityManager.find(HabitacionEntity.class, result.getIdentificacion());
+        HabitacionEntity entity = entityManager.find(HabitacionEntity.class, result.getId());
 
         assertEquals(newEntity.getIdentificacion(), entity.getIdentificacion());
     }
