@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
-import co.edu.uniandes.dse.parcialejemplo.entities.HotelEntity;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,21 +16,23 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import co.edu.uniandes.dse.parcialejemplo.entities.HabitacionEntity;
 import co.edu.uniandes.dse.parcialejemplo.exceptions.IllegalOperationException;
 import uk.co.jemos.podam.api.PodamFactory;
 import uk.co.jemos.podam.api.PodamFactoryImpl;
 
+
 @ExtendWith(SpringExtension.class)
 @DataJpaTest
 @Transactional
-@Import(HotelService.class)
-public class HotelServicesTest {
+@Import(HabitacionService.class)
+public class HabitacionServiceTest {
     @Autowired
-    private HotelService hotelService;
+    private HabitacionService habitacionService;
     @Autowired
     private TestEntityManager entityManager;
 
-    private List<HotelEntity> ltHotel = new ArrayList<>();
+    private List<HabitacionEntity> ltHabitaciones = new ArrayList<>();
     private PodamFactory factory = new PodamFactoryImpl();
 
     @BeforeEach
@@ -40,27 +42,27 @@ public class HotelServicesTest {
     }
     private void clearData()
     {
-        entityManager.getEntityManager().createQuery("Delete from HabitacionEntity").executeUpdate();
+        entityManager.getEntityManager().createQuery("Delete from HotelEntity").executeUpdate();
        
     }
 
     private void insertData()
     {
         for(int i = 0; i < 5; i++){
-            HotelEntity hotelEntity = factory.manufacturePojo(HotelEntity.class);
-            entityManager.persist(hotelEntity);
-            ltHotel.add(hotelEntity);
+            HabitacionEntity habitacionEntity = factory.manufacturePojo(HabitacionEntity.class);
+            entityManager.persist(habitacionEntity);
+            ltHabitaciones.add(habitacionEntity);
         }
-        HotelEntity hotelEntity = ltHotel.get(2);
-        entityManager.persist(hotelEntity);
+        HabitacionEntity habitacionEntity = ltHabitaciones.get(2);
+        entityManager.persist(habitacionEntity);
     }
     @Test
-    void testCreateHotel()throws IllegalOperationException  {
-        HotelEntity newEntity = factory.manufacturePojo(HotelEntity.class);
-        HotelEntity result = hotelService.crearHotel(newEntity);
+    void testCreateHabitacion()throws IllegalOperationException  {
+        HabitacionEntity newEntity = factory.manufacturePojo(HabitacionEntity.class);
+        HabitacionEntity result = habitacionService.createHabitacion(newEntity);
         assertNotNull(result);
-        HotelEntity entity = entityManager.find(HotelEntity.class, result.getId());
+        HabitacionEntity entity = entityManager.find(HabitacionEntity.class, result.getIdentificacion());
 
-        assertEquals(newEntity.getId(), entity.getId());
+        assertEquals(newEntity.getIdentificacion(), entity.getIdentificacion());
     }
 }
